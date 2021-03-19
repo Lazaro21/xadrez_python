@@ -1,13 +1,13 @@
-from PecaXadrez import Peca
-from Posicao import Posicao
+from JogoDeTabuleiro.PecaXadrez import Peca
+from JogoDeTabuleiro.Posicao import Posicao
 
 
-class Tabuleiro:
+class Tabuleiro(list):
 
     def __init__(self):
         self.linhas = 8
         self.colunas = 8
-        self.pecas = [[] * self.linhas]
+        super().__init__([[None for i in range(self.linhas)] for i in range(self.colunas)])
 
     def peca(self, linha, coluna):
         linhas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']

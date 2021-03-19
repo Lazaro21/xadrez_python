@@ -1,6 +1,9 @@
 from JogoDeTabuleiro.Posicao import Posicao
-
+from JogoDeTabuleiro.Tabuleiro import Tabuleiro
+import UI
 
 p1 = Posicao(0, 5)
 
-print(p1)
+tabuleiro = Tabuleiro()
+
+UI.imprimir_tabuleiro(tabuleiro)
