@@ -11,10 +11,11 @@ class Cores(Enum):
 class Peca(metaclass=ABCMeta):
 
     @abstractmethod
-    def __init__(self, posicao, cor):
+    def __init__(self, posicao, cor, tabuleiro):
         self.linha = posicao.linha
         self.coluna = posicao.coluna
         self.COR = cor
+        self.tabuleiro = tabuleiro
         self.qtde_movimentos = 0
 
     @abstractmethod

@@ -1,9 +1,10 @@
 from JogoDeTabuleiro.Posicao import Posicao
-from JogoDeTabuleiro.Tabuleiro import Tabuleiro
+from PartidaDeXadrez.JogoXadrez import JogoXadrez
 import UI
 
 p1 = Posicao(0, 5)
 
-tabuleiro = Tabuleiro()
 
-UI.imprimir_tabuleiro(tabuleiro)
+jx = JogoXadrez()
+
+UI.imprimir_tabuleiro(jx.tabuleiro)

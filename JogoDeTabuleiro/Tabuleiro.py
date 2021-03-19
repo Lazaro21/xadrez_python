@@ -13,3 +13,7 @@ class Tabuleiro(list):
         linhas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
         linhaNumero = linhas[linha].index()
         return self.pecas[linhaNumero][coluna]
+
+    def colocar_peca(self, peca, posicao):
+        self[posicao.linha][posicao.coluna] = peca
+        peca.posicao = posicao
