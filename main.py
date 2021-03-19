@@ -1,4 +1,4 @@
-from Tabuleiro.Posicao import Posicao
+from JogoDeTabuleiro.Posicao import Posicao
 
 
 p1 = Posicao(0, 5)
