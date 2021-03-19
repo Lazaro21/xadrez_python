@@ -18,22 +18,22 @@ class Tabuleiro(list):
         return self.pecas[linha_numero][coluna]
 
     def colocar_peca(self, peca, posicao):
-        if self.ha_uma_peca_nessa_posicao(posicao.linha, posicao.coluna):
-            raise TabuleiroException("Posicão ocupada. ")
-
-        self[posicao.linha][posicao.coluna] = peca
-        peca.posicao = posicao
+        if self.posicao_existe(posicao.linha, posicao.coluna):
+            if self.ha_uma_peca_nessa_posicao(posicao.linha, posicao.coluna):
+                raise TabuleiroException("Posicão ocupada. ")
+            else:
+                self[posicao.linha][posicao.coluna] = peca
+                peca.posicao = posicao
 
     @staticmethod
     def posicao_existe(linha, coluna):
         return 0 <= linha <= 7 and 0 <= coluna <= 7
 
     def ha_uma_peca_nessa_posicao(self, linha, coluna):
-        if self.posicao_existe(linha, coluna):
-            if self[linha][coluna] is None:
-                return True
+        if self[linha][coluna] is not None:
+            return True
 
 
 class TabuleiroException(Exception):
-    """Responsável por tratar excecões relacionadas ao jogo de xadrez"""
+    """Responsável por tratar excecões relacionadas ao tabuleiro"""
     pass

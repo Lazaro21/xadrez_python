@@ -5,6 +5,7 @@ import UI
 p1 = Posicao(0, 5)
 
 
+
 jx = JogoXadrez()
 
 UI.imprimir_tabuleiro(jx.tabuleiro)
