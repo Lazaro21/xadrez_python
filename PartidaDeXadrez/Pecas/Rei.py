@@ -9,8 +9,8 @@ class Rei(Peca):
     def __str__(self):
         return " R "
 
-    def ha_algum_movimento_possivel(self):
+    def ha_alguma_jogada_possivel(self):
         pass
 
-    def movimentos_possiveis(self):
+    def jogadas_possiveis(self):
         pass

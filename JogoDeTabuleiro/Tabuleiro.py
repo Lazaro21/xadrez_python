@@ -1,39 +1,45 @@
 from JogoDeTabuleiro.PecaXadrez import Peca
 from JogoDeTabuleiro.Posicao import Posicao
+from UI import imprimir_tabuleiro
 
 
-class Tabuleiro(list):
+class Tabuleiro:
 
     def __init__(self):
-        self.linhas = 8
-        self.colunas = 8
-        super().__init__([[None for i in range(self.linhas)] for i in range(self.colunas)])
-
-    def peca(self, linha, coluna):
-        linhas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-        linha_numero = linhas[linha].index()
-
-        if not self.posicao_existe(linha, coluna):
+        self.tabuleiro = [[None for i in range(8)] for j in range(8)]
+        
+    def peca(self, posicao):
+        if not self.posicao_existe(posicao):
             raise TabuleiroException("Posicão digitada não existe. ")
-        return self.pecas[linha_numero][coluna]
+        return self.tabuleiro[posicao.linha][posicao.coluna]
 
     def colocar_peca(self, peca, posicao):
-        if self.posicao_existe(posicao.linha, posicao.coluna):
-            if self.ha_uma_peca_nessa_posicao(posicao.linha, posicao.coluna):
+        if self.posicao_existe(posicao):
+            if self.ha_uma_peca_nessa_posicao(posicao):
                 raise TabuleiroException("Posicão ocupada. ")
             else:
-                self[posicao.linha][posicao.coluna] = peca
-                peca.posicao = posicao
+                self.tabuleiro[posicao.linha][posicao.coluna] = peca
 
     @staticmethod
-    def posicao_existe(linha, coluna):
-        return 0 <= linha <= 7 and 0 <= coluna <= 7
+    def posicao_existe(posicao):
+        # print(f"Visualizacão dentro do posicao existe: {posicao.linha - 1}  {posicao.coluna - 1}")
+        return 0 <= posicao.linha <= 7 and 0 <= int(posicao.coluna) <= 7
 
-    def ha_uma_peca_nessa_posicao(self, linha, coluna):
-        if self[linha][coluna] is not None:
-            return True
+    def ha_uma_peca_nessa_posicao(self, posicao):
+        return self.tabuleiro[posicao.linha][posicao.coluna] is not None
+
+    def remover_peca(self, posicao):
+        if self.posicao_existe(posicao):
+            if self.ha_uma_peca_nessa_posicao(posicao):
+                imprimir_tabuleiro(self)
+                peca_removida = self.tabuleiro[posicao.linha][posicao.coluna]
+                self.tabuleiro[posicao.linha][posicao.coluna] = None
+                imprimir_tabuleiro(self)
+                return peca_removida
+            return None
 
 
 class TabuleiroException(Exception):
     """Responsável por tratar excecões relacionadas ao tabuleiro"""
     pass
+

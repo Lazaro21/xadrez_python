@@ -12,16 +12,23 @@ class Peca(metaclass=ABCMeta):
 
     @abstractmethod
     def __init__(self, posicao, cor, tabuleiro):
-        self.linha = posicao.linha
-        self.coluna = posicao.coluna
+        self.posicao = posicao
         self.COR = cor
         self.tabuleiro = tabuleiro
         self.qtde_movimentos = 0
 
     @abstractmethod
-    def movimentos_possiveis(self):
+    def jogadas_possiveis(self):
         pass
 
-    @abstractmethod
-    def ha_algum_movimento_possivel(self):
-        pass
+    def jogada_possivel(self, posicao):
+        possiveis = self.jogadas_possiveis()
+        return possiveis[posicao.linha][posicao.coluna]
+
+    def ha_alguma_jogada_possivel(self):
+        possiveis = self.jogadas_possiveis()
+        for i in possiveis:
+            for j in possiveis:
+                if j:
+                    return j
+

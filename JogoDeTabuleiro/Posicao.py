@@ -4,7 +4,7 @@
 class Posicao:
 
     def __init__(self, linha, coluna):
-        self.linha = linha
+        self.linha =  8 - linha
         self.coluna = coluna
 
     def alterar_valores(self, linha, coluna):
