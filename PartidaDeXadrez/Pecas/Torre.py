@@ -5,8 +5,8 @@ from JogoDeTabuleiro.Posicao import Posicao
 
 class Torre(Peca):
 
-    def __init__(self, posicao, tabuleiro, cor):
-        super().__init__(posicao, tabuleiro, cor)
+    def __init__(self, posicao, tabuleiro, COR):
+        super().__init__(posicao, tabuleiro, COR)
 
     def __str__(self):
         return " T "
@@ -22,7 +22,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.linha -= 1
 
-        if Tabuleiro.posicao_existe(p) and self.tabuleiro.ha_uma_peca_oponente_nesta_posicao(p):
+        if Tabuleiro.posicao_existe(p) and self.ha_uma_peca_oponente_nesta_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         # esquerda
@@ -32,7 +32,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.coluna -= 1
 
-        if Tabuleiro.posicao_existe(p) and self.tabuleiro.ha_uma_peca_oponente_nesta_posicao(p):
+        if Tabuleiro.posicao_existe(p) and self.ha_uma_peca_oponente_nesta_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         # baixo
@@ -42,7 +42,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.linha += 1
 
-        if Tabuleiro.posicao_existe(p) and self.tabuleiro.ha_uma_peca_oponente_nesta_posicao(p):
+        if Tabuleiro.posicao_existe(p) and self.ha_uma_peca_oponente_nesta_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         # direita
@@ -52,7 +52,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.coluna += 1
 
-        if Tabuleiro.posicao_existe(p) and self.tabuleiro.ha_uma_peca_oponente_nesta_posicao(p):
+        if Tabuleiro.posicao_existe(p) and self.ha_uma_peca_oponente_nesta_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         return movimentos_possiveis

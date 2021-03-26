@@ -31,8 +31,6 @@ class Peca(metaclass=ABCMeta):
             for j in possiveis:
                 if j:
                     return j
+                
+        
 
-    def ha_uma_peca_oponente_nesta_posicao(self, posicao):
-        peca_posicao_especificada = self.tabuleiro.peca(posicao)
-        if peca_posicao_especificada is not None and peca_posicao_especificada.COR != self.COR:
-            return True

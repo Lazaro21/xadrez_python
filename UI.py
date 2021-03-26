@@ -1,10 +1,9 @@
 from JogoDeTabuleiro.PecaXadrez import Cores
 from JogoDeTabuleiro.Posicao import Posicao
 import os
-import random
 
 
-class bcolors:
+class Bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'
@@ -14,19 +13,31 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+    BLACK = "\033[0;30m"
+    BLINK = "\033[5m"
 
 
-def imprimir_tabuleiro(tabuleiro):
+def imprimir_tabuleiro(tabuleiro, movimentos_possiveis = None):
+    if movimentos_possiveis is None:
+        movimentos_possiveis = [[False for i in range(8)] for j in range(8)]
     for i in range(len(tabuleiro.tabuleiro)):
         print(8 - i, ": ", end='')
         for j in range(len(tabuleiro.tabuleiro)):
+            if movimentos_possiveis[i][j]:
+                print(Bcolors.BLACK, end='')
             if tabuleiro.tabuleiro[i][j] is None:
-                print(' - ', end='')
+                print(' - ' + Bcolors.ENDC, end='')
             else:
                 if tabuleiro.tabuleiro[i][j].COR == Cores.BRANCA:
-                    print(str(tabuleiro.tabuleiro[i][j]), end='')
+                    if movimentos_possiveis[i][j]:
+                        print(Bcolors.OKGREEN + str(tabuleiro.tabuleiro[i][j]), end='')
+                    else:
+                        print(str(tabuleiro.tabuleiro[i][j]), end='')
                 else:
-                    print(bcolors.OKBLUE + str(tabuleiro.tabuleiro[i][j]) + bcolors.ENDC, end='')
+                    if movimentos_possiveis[i][j]:
+                        print(Bcolors.OKGREEN + str(tabuleiro.tabuleiro[i][j]), end='')
+                    else:
+                        print(Bcolors.OKBLUE + str(tabuleiro.tabuleiro[i][j]) + Bcolors.ENDC, end='')
         print("\n")
     print("     a  b  c  d  e  f  g  h")
 

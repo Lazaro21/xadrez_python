@@ -39,6 +39,10 @@ class JogoXadrez:
         if not self.tabuleiro.peca(origem).ha_alguma_jogada_possivel():
             raise XadrezException("Não há movimentos possíveis para a peca escolhida. ")
 
+    def jogadas_possiveis(self, posicao):
+        self.validar_posicao_de_origem(posicao)
+        return self.tabuleiro.peca(posicao).jogadas_possiveis()
+
     def inicializacao_do_jogo(self):
         self.adicionar_nova_peca(Rei(Posicao(2, 1), Cores.BRANCA,
                                      self.tabuleiro), Posicao(2, 1))

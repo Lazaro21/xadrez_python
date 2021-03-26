@@ -19,7 +19,7 @@ def principal():
             origem = UI.ler_posicao_xadrez("Digite a peca a ser movimentada: ")
 
             print("\n")
-            UI.imprimir_tabuleiro(jogo_de_xadrez.tabuleiro)
+            UI.imprimir_tabuleiro(jogo_de_xadrez.tabuleiro, jogo_de_xadrez.jogadas_possiveis(origem))
             destino = UI.ler_posicao_xadrez("Digite a posicão de destino: ")
             peca_capturada = jogo_de_xadrez.realizar_jogada_de_xadrez(origem, destino)
     except XadrezException as e:
