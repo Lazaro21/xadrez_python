@@ -12,12 +12,11 @@ class Torre(Peca):
         return " T "
 
     def jogadas_possiveis(self):
-        movimentos_possiveis = [[None for i in range(8)] for j in range(8)]
-        p = Posicao(0, 0)
+        movimentos_possiveis = [[False for i in range(8)] for j in range(8)]
+        teste = self.posicao
 
         # acima
-        p.linha = self.posicao.linha - 1
-        p.coluna = self.posicao.coluna
+        p = Posicao(self.posicao.linha - 1 + 8 , self.posicao.coluna)
         while Tabuleiro.posicao_existe(p) and not self.tabuleiro.ha_uma_peca_nessa_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.linha -= 1
@@ -26,8 +25,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         # esquerda
-        p.linha = self.posicao.linha
-        p.coluna = self.posicao.coluna - 1
+        p = Posicao(self.posicao.linha + 8, self.posicao.coluna - 1)
         while Tabuleiro.posicao_existe(p) and not self.tabuleiro.ha_uma_peca_nessa_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.coluna -= 1
@@ -36,8 +34,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         # baixo
-        p.linha = self.posicao.linha + 1
-        p.coluna = self.posicao.coluna
+        p = Posicao(self.posicao.linha + 1 + 8 , self.posicao.coluna)
         while Tabuleiro.posicao_existe(p) and not self.tabuleiro.ha_uma_peca_nessa_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.linha += 1
@@ -46,8 +43,7 @@ class Torre(Peca):
             movimentos_possiveis[p.linha][p.coluna] = True
 
         # direita
-        p.linha = self.posicao.linha
-        p.coluna = self.posicao.coluna + 1
+        p = Posicao(self.posicao.linha + 8 , self.posicao.coluna + 1)
         while Tabuleiro.posicao_existe(p) and not self.tabuleiro.ha_uma_peca_nessa_posicao(p):
             movimentos_possiveis[p.linha][p.coluna] = True
             p.coluna += 1

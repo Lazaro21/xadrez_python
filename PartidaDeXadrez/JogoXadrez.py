@@ -11,6 +11,8 @@ class JogoXadrez:
         self.tabuleiro = Tabuleiro()
         self.inicializacao_do_jogo()
         self.pecas_capturadas = []
+        self.turno = 1
+        self.jogador_atual = Cores.BRANCA
 
     def adicionar_nova_peca(self, peca, posicao):
         self.tabuleiro.colocar_peca(peca, posicao)
@@ -21,6 +23,7 @@ class JogoXadrez:
         peca_capturada= self.realizar_jogada(origem, destino)
         if peca_capturada is not None:
             self.pecas_capturadas.append(peca_capturada)
+        self.proximo_turno()
         return peca_capturada
 
     def realizar_jogada(self, origem, destino):
@@ -36,12 +39,21 @@ class JogoXadrez:
     def validar_posicao_de_origem(self, origem):
         if not self.tabuleiro.ha_uma_peca_nessa_posicao(origem):
             raise XadrezException("Não há uma peca na posicão escolhida. ")
+        if self.jogador_atual != self.tabuleiro.peca(origem).COR:
+            raise XadrezException("A peca escolhida não é sua.")
         if not self.tabuleiro.peca(origem).ha_alguma_jogada_possivel():
             raise XadrezException("Não há movimentos possíveis para a peca escolhida. ")
 
     def jogadas_possiveis(self, posicao):
         self.validar_posicao_de_origem(posicao)
         return self.tabuleiro.peca(posicao).jogadas_possiveis()
+    
+    def proximo_turno(self):
+        self.turno += 1
+        if self.jogador_atual == Cores.BRANCA:
+            self.jogador_atual = Cores.PRETA
+        else:
+            self.jogador_atual = Cores.BRANCA
 
     def inicializacao_do_jogo(self):
         self.adicionar_nova_peca(Rei(Posicao(2, 1), Cores.BRANCA,

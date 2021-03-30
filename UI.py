@@ -42,6 +42,13 @@ def imprimir_tabuleiro(tabuleiro, movimentos_possiveis = None):
     print("     a  b  c  d  e  f  g  h")
 
 
+def imprimir_jogo_de_xadrez(jogo_de_xadrez, movimentos_possiveis = None):
+    imprimir_tabuleiro(jogo_de_xadrez.tabuleiro, movimentos_possiveis)
+    print()
+    print("Turno: ", jogo_de_xadrez.turno)
+    print("Esperando a jogada de: ", jogo_de_xadrez.jogador_atual)
+
+
 def ler_posicao_xadrez(msg):
     try:
         posicao_string = input(msg)

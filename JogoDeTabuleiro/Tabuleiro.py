@@ -22,13 +22,17 @@ class Tabuleiro:
 
     @staticmethod
     def posicao_existe(posicao):
-        # print(f"Visualizacão dentro do posicao existe: {posicao.linha - 1}  {posicao.coluna - 1}")
+        print(f"Visualizacão dentro do posicao existe: {posicao.linha - 1}  {posicao.coluna - 1}")
         return 0 <= posicao.linha <= 7 and 0 <= int(posicao.coluna) <= 7
 
     def ha_uma_peca_nessa_posicao(self, posicao):
         return self.tabuleiro[posicao.linha][posicao.coluna] is not None
 
     def remover_peca(self, posicao):
+        """
+
+        :rtype: Peca
+        """
         if self.posicao_existe(posicao):
             if self.ha_uma_peca_nessa_posicao(posicao):
                 imprimir_tabuleiro(self)
